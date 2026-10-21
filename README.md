@@ -1,10 +1,5 @@
 # MarketMind AI — Multi-Agent Company Intelligence Platform
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![LangGraph](https://img.shields.io/badge/orchestration-LangGraph-orange.svg)](https://github.com/langchain-ai/langgraph)
-[![LangChain](https://img.shields.io/badge/framework-LangChain-green.svg)](https://github.com/langchain-ai/langchain)
-[![Pydantic v2](https://img.shields.io/badge/validation-Pydantic%20v2-red.svg)](https://pydantic.dev)
-[![Tests](https://img.shields.io/badge/tests-32%20passed-brightgreen.svg)]()
 
 **MarketMind AI** is a production-minded multi-agent market intelligence platform built with **Python 3.11**, **LangGraph**, **LangChain**, and **Pydantic v2**. 
 
@@ -12,7 +7,7 @@ Given a target company name or official website URL, MarketMind orchestrates **f
 
 ---
 
-## 🏛️ Architecture Overview
+## Architecture Overview
 
 The platform uses LangGraph's `StateGraph` to ensure true workflow fan-out and fan-in join patterns. Each parallel agent writes to its own isolated state field, eliminating race conditions while merging atomic evidence records through reducer functions.
 
@@ -38,7 +33,7 @@ flowchart TD
 
 ---
 
-## 🤖 The Four Specialist Agents
+##  The Four Specialist Agents
 
 ### 1. Company Profile Agent (`agents/company_profile.py`)
 - **Objective:** Establish an authoritative overview of the target enterprise.
@@ -127,7 +122,7 @@ OUTPUT_DIR=runs
 
 ---
 
-## 💻 CLI Usage Examples
+## CLI Usage Examples
 
 ### Full Live Research Run (Groq + DuckDuckGo)
 ```bash
@@ -160,7 +155,7 @@ python main.py --company "Anthropic" --mock-search --mock-llm
 
 ---
 
-## 📁 Output Artifacts Structure
+##  Output Artifacts Structure
 
 Every run creates an isolated, timestamped output directory under `runs/`:
 ```
@@ -173,7 +168,7 @@ runs/
 
 ---
 
-## 🧪 Testing Suite
+##  Testing Suite
 
 MarketMind AI includes a comprehensive test suite of **32 pytest unit and integration tests** verifying:
 - Pydantic schema constraints and validation errors
@@ -193,7 +188,7 @@ pytest -v
 
 ---
 
-## ⚖️ Design Decisions & Limitations
+##  Design Decisions & Limitations
 
 1. **Deterministic State Merging:** Rather than permitting parallel branches to race on shared state keys, each agent writes to its designated field (`company_profile`, `competitor_analysis`, etc.), while cross-cutting logs and evidences use `operator.add` reducers.
 2. **Untrusted Web Content:** External web pages are treated strictly as untrusted text strings. The system never executes instructions or scripts discovered inside scraped pages.
@@ -202,5 +197,4 @@ pytest -v
 
 ---
 
-## 📄 License
-MIT License. Created for portfolio and production multi-agent market intelligence applications.
+
